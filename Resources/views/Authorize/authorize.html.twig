@@ -1,0 +1,54 @@
+{#
+This file is part of the CampaignChain package.
+
+(c) CampaignChain Inc. <info@campaignchain.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% set page_title = 'Authorize' %}
+
+{% extends 'CampaignChainCoreBundle:Base:base_fullscreen.html.twig' %}
+
+{% trans_default_domain 'FOSOAuthServerBundle' %}
+
+{% block body %}
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% if (campaignchain_system is not null) and (campaignchain_system.logo is not null) %}
+                <img src="{{ campaignchain_system.logo }}" height="24">
+            {% else %}
+                <h3 class="modal-title">CampaignChain</h3>
+            {% endif %}
+        </div>
+        <div class="modal-body">
+            <h3><i class="fa fa-cube"></i> {{ client.name }}</h3>
+            <p>The application "{{ client.name }}" would like to connect to your account.</p>
+            <form action="{{ path('fos_oauth_server_authorize') }}" method="POST" class="form-horizontal" {{ form_enctype(form) }}>
+                {{ bootstrap_set_style('horizontal') }}
+                {{ bootstrap_set_widget_col(9) }}
+                {{ bootstrap_set_label_col(3) }}
+                <button class="btn btn-primary" type="submit" name="accepted" value="{{ 'authorize.accept'|trans({}, 'FOSOAuthServerBundle') }}">{{ 'authorize.accept'|trans({}, 'FOSOAuthServerBundle') }}</button>
+                <button class="btn btn-default" type="submit" name="rejected" value="{{ 'authorize.reject'|trans({}, 'FOSOAuthServerBundle') }}">{{ 'authorize.reject'|trans({}, 'FOSOAuthServerBundle') }}</button>
+                {{ form_row(form.client_id) }}
+                {{ form_row(form.response_type) }}
+                {{ form_row(form.redirect_uri) }}
+                {{ form_row(form.state) }}
+                {{ form_row(form.scope) }}
+                {{ form_rest(form) }}
+            </form>
+        </div>
+        {% if (campaignchain_system is not null) and (campaignchain_system.termsUrl is not null) %}
+            <div class="modal-footer">
+                <p class="text-muted">The shared information will be used in accordance with the<br/><a href="{{ campaignchain_system.termsUrl }}">terms of service and privacy policies</a>.</p>
+            </div>
+        {% endif %}
+    </div>
+<script type="text/javascript">
+    $('#loginModal').modal('show');
+</script>
+{% endblock %}

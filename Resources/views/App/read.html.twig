@@ -1,0 +1,88 @@
+{#
+This file is part of the CampaignChain package.
+
+(c) CampaignChain Inc. <info@campaignchain.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% extends 'CampaignChainCoreBundle:Base:base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@hideshowpassword_js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@hideshowpassword_css' combine=true %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block bodytabs %}
+    {{ knp_menu_render('CampaignChainSecurityAuthenticationServerOAuthBundle:Builder:detailsTab', { 'style': 'tabs' }) }}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><i class="fa fa-cube"></i> {{ oauth_app.getName() }}</div>
+                <div class="panel-body">
+                    <h5>Key</h5>
+                    <p>{{ oauth_app.id }}_{{ oauth_app.randomId }}</p>
+                    <h5>Secret</h5>
+                    <input id="secret" class="form-control secret" type="password" value="{{ oauth_app.secret }}" />
+                    <script>
+                        $('#secret').hidePassword(true);
+                    </script>
+                    <h5>Redirect URIs</h5>
+                    <ul>
+                        {% for redirect_uri in oauth_app.getRedirectUris() %}
+                            <li><a href="redirect_uri">{{ redirect_uri }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a role="button" class="btn btn-primary pull-right"
+                       data-toggle="tooltip" data-placement="top" data-original-title="Edit"
+                       href="{{ path('campaignchain_security_authentication_server_oauth_apps_edit',{'id':oauth_app.id}) }}">
+                        <span class="fa fa-pencil"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Connections</h3>
+            {% if oauth_tokens is iterable %}
+                <table class="table">
+                    <tr>
+                        <th>User</th>
+                        <th>Token</th>
+                        <th>Scope</th>
+                        <th>Expires at</th>
+                    </tr>
+                    {% for token in oauth_tokens %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('campaignchain_core_profile_edit',{'id':token.getUser().getId()}) }}">
+                                    {{ token.getUser().getFirstName() }} {{ token.getUser().getLastName() }}
+                                </a>
+                            </td>
+                            <td><div class="scrollable">{{ token.token }}</div></td>
+                            <td>{{ token.scope }}</td>
+                            <td>{{ token.expiresAt|campaignchain_timestamp_to_datetime }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Yet, no one connected to this app.</p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

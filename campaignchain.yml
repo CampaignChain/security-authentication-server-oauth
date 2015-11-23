@@ -1,0 +1,14 @@
+# This file is part of the CampaignChain package.
+#
+# (c) CampaignChain Inc. <info@campaignchain.com>
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+modules:
+    campaignchain-security-authentication-server-oauth:
+        display_name: OAuth Server
+        system:
+            navigation:
+                settings:
+                    - ["OAuth Server Apps", campaignchain_security_authentication_server_oauth_apps]

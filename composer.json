@@ -1,0 +1,42 @@
+{
+    "name": "campaignchain/security-authentication-server-oauth",
+    "description": "OAuth server to authenticate against to use built-in REST API.",
+    "keywords": ["oauth","campaignchain"],
+    "type": "campaignchain-security",
+    "homepage": "http://www.campaignchain.com",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "CampaignChain Inc.",
+            "email": "info@campaignchain.com",
+            "homepage": "http://www.campaignchain.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/CampaignChain/campaignchain-ce/issues",
+        "docs": "http://doc.campaignchain.com"
+    },
+    "require": {
+        "campaignchain/core": "dev-master",
+        "friendsofsymfony/oauth-server-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "CampaignChain\\Security\\Authentication\\Server\\OAuthBundle\\": "" }
+    },
+    "extra": {
+        "campaignchain": {
+            "kernel": {
+                "classes": [
+                    "CampaignChain\\Security\\Authentication\\Server\\OAuthBundle\\CampaignChainSecurityAuthenticationServerOAuthBundle",
+                    "FOS\\OAuthServerBundle\\FOSOAuthServerBundle"
+                ],
+                "routing":
+                {
+                    "name": "campaignchain_security_authentication_server_o_auth",
+                    "resource": "@CampaignChainSecurityAuthenticationServerOAuthBundle/Resources/config/routing.yml",
+                    "prefix": "/"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+# This file is part of the CampaignChain package.
+#
+# (c) CampaignChain Inc. <info@campaignchain.com>
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+services:
+#    campaign_chain_security_authentication_server_o_auth.example:
+#        class: CampaignChain\Security\Authentication\Server\OAuthBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

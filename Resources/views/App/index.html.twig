@@ -1,0 +1,53 @@
+{#
+This file is part of the CampaignChain package.
+
+(c) CampaignChain Inc. <info@campaignchain.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% extends 'CampaignChainCoreBundle:Base:base.html.twig' %}
+
+{% block body %}
+    <div id="campaignchain-security-authentication-server-oauth">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group" role="group">
+                <a href="{{ path('campaignchain_security_authentication_server_oauth_apps_new') }}" class="btn btn-primary" role="button"><span class="fa fa-plus"></span> Create new App</a>
+            </div>
+        </div>
+
+        {% include 'CampaignChainCoreBundle:Base:datatable.html.twig' %}
+
+        <!--<div class="table-responsive">-->
+            <table id="example" class="table table-striped table-bordered dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in apps %}
+                        <tr>
+                            <td>{{ app.name }}</td>
+                            <td>
+                                <a role="button" class="btn btn-primary"
+                                   data-toggle="tooltip" data-placement="top" data-original-title="Edit"
+                                   href="{{ path('campaignchain_security_authentication_server_oauth_apps_edit',{'id':app.id}) }}">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+                                <a  class="btn btn-primary"
+                                    role="button"
+                                    data-toggle="tooltip" data-placement="top" data-original-title="Details"
+                                    href="{{ path('campaignchain_security_authentication_server_oauth_apps_read',{'id':app.id}) }}">
+                                    <span class="fa fa-file-text"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <!--</div>-->
+    </div>
+{% endblock %}
