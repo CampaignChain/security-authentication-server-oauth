@@ -44,7 +44,7 @@ class AppController extends Controller
             $clientManager = $this->get('fos_oauth_server.client_manager.default');
             $client = $clientManager->createClient();
             $client->setName($form->get('name')->getData());
-            $client->setRedirectUris($form->get('redirects')->getData());
+            $client->setRedirectUris($form->get('redirectUris')->getData());
             $client->setAllowedGrantTypes(array('token', 'authorization_code'));
             $clientManager->updateClient($client);
 
