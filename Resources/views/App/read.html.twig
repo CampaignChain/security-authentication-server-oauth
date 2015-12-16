@@ -54,6 +54,16 @@ file that was distributed with this source code.
                 </div>
             </div>
         </div>
+        <div class="col-mod-6">
+            <h5>Authorization Endpoint</h5>
+            <p>{{ app.request.getSchemeAndHttpHost() }}{{ path('fos_oauth_server_authorize') }}</p>
+
+            <h5>Token Endpoint</h5>
+            <p>{{ app.request.getSchemeAndHttpHost() }}{{ path('fos_oauth_server_token') }}</p>
+
+            <h5>Access Token Request Methods</h5>
+            <p>POST or GET</p>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
