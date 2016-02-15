@@ -11,6 +11,7 @@
 namespace CampaignChain\Security\Authentication\Server\OAuthBundle\Controller;
 
 use CampaignChain\Security\Authentication\Server\OAuthBundle\Form\Type\AppType;
+use OAuth2\OAuth2;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -45,7 +46,12 @@ class AppController extends Controller
             $client = $clientManager->createClient();
             $client->setName($form->get('name')->getData());
             $client->setRedirectUris($form->get('redirectUris')->getData());
-            $client->setAllowedGrantTypes(array('token', 'authorization_code'));
+            $client->setAllowedGrantTypes([
+                OAuth2::GRANT_TYPE_AUTH_CODE,
+                OAuth2::GRANT_TYPE_CLIENT_CREDENTIALS,
+                OAuth2::GRANT_TYPE_IMPLICIT,
+                OAuth2::GRANT_TYPE_REFRESH_TOKEN,
+            ]);
             $clientManager->updateClient($client);
 
             $this->addFlash('Added new App "'.$client->getName().'" with Key "'.$client->getPublicId().'"', 'success');
