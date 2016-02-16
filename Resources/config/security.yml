@@ -19,7 +19,7 @@ security:
                 login_path: /oauth/v2/auth_login
 
         api:
-            pattern:    ^/api
+            pattern:    ^/api(?!(/doc|/v1/report/)).*$
             fos_oauth:  true
             stateless:  true
             anonymous:  false # can be omitted as its default value
