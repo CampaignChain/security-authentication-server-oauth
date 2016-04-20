@@ -79,7 +79,7 @@ file that was distributed with this source code.
                     {% for token in oauth_tokens %}
                         <tr>
                             <td>
-                                <a href="{{ path('campaignchain_core_profile_edit',{'id':token.getUser().getId()}) }}">
+                                <a href="{{ path('campaignchain_core_user_edit',{'id':token.getUser().getId()}) }}">
                                     {{ token.getUser().getFirstName() }} {{ token.getUser().getLastName() }}
                                 </a>
                             </td>
