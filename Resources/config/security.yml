@@ -22,8 +22,9 @@ security:
             pattern:    ^/api(?!(/doc|/v1/report/)).*$
             fos_oauth:  true
             stateless:  true
-            anonymous:  false # can be omitted as its default value
+            anonymous:  true
 
     access_control:
         # REST API
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY, ips: [127.0.0.1, ::1] }
         - { path: ^/api, role: IS_AUTHENTICATED_FULLY }
