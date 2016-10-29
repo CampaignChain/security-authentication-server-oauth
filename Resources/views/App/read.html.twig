@@ -31,7 +31,13 @@ limitations under the License.
 {% endblock %}
 
 {% block bodytabs %}
-    {{ knp_menu_render('CampaignChainSecurityAuthenticationServerOAuthBundle:Builder:detailsTab', { 'style': 'tabs' }) }}
+    {{ knp_menu_render(
+    'CampaignChainSecurityAuthenticationServerOAuthBundle:Builder:detailsTab',
+    {
+        'template': 'CampaignChainCoreBundle:Menu:nav_top.html.twig',
+        'style': 'navbar'
+    }
+    ) }}
 {% endblock %}
 
 {% block body %}
