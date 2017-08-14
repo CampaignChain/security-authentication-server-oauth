@@ -31,7 +31,7 @@ limitations under the License.
         <div class="modal-body">
             <h3><i class="fa fa-cube"></i> {{ client.name }}</h3>
             <p>The application "{{ client.name }}" would like to connect to your account.</p>
-            <form action="{{ path('fos_oauth_server_authorize') }}" method="POST" class="form-horizontal" {{ form_enctype(form) }}>
+            {{ form_start(form, {"attr": {"action": path('fos_oauth_server_authorize'), "method": "POST", "class": "form-horizontal"}}) }}
                 {{ bootstrap_set_style('horizontal') }}
                 {{ bootstrap_set_widget_col(9) }}
                 {{ bootstrap_set_label_col(3) }}
@@ -43,7 +43,7 @@ limitations under the License.
                 {{ form_row(form.state) }}
                 {{ form_row(form.scope) }}
                 {{ form_rest(form) }}
-            </form>
+            {{ form_end(form) }}
         </div>
         {% if (campaignchain_system is not null) and (campaignchain_system.termsUrl is not null) %}
             <div class="modal-footer">

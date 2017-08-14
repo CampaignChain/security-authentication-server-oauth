@@ -19,17 +19,17 @@ fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
 campaignchain_security_authentication_server_oauth_apps:
-    pattern:  /security/authentication/server/oauth/apps/
+    path:  /security/authentication/server/oauth/apps/
     defaults: { _controller: CampaignChainSecurityAuthenticationServerOAuthBundle:App:index }
 
 campaignchain_security_authentication_server_oauth_apps_new:
-    pattern:  /security/authentication/server/oauth/apps/new/
+    path:  /security/authentication/server/oauth/apps/new/
     defaults: { _controller: CampaignChainSecurityAuthenticationServerOAuthBundle:App:new }
 
 campaignchain_security_authentication_server_oauth_apps_edit:
-    pattern:  /security/authentication/server/oauth/apps/{id}/edit
+    path:  /security/authentication/server/oauth/apps/{id}/edit
     defaults: { _controller: CampaignChainSecurityAuthenticationServerOAuthBundle:App:edit }
 
 campaignchain_security_authentication_server_oauth_apps_read:
-    pattern:  /security/authentication/server/oauth/apps/{id}
+    path:  /security/authentication/server/oauth/apps/{id}
     defaults: { _controller: CampaignChainSecurityAuthenticationServerOAuthBundle:App:read }
