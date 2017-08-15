@@ -17,6 +17,7 @@
 
 namespace CampaignChain\Security\Authentication\Server\OAuthBundle\Form\Type;
 
+use Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -40,7 +41,7 @@ class AppType extends AbstractType
             ))
             ->add(
                 'redirectUris',
-                'bootstrap_collection',
+                BootstrapCollectionType::class,
                 array(
                     'label' => 'Redirect URIs',
                     'type' => 'url',

@@ -44,7 +44,7 @@ class AppController extends Controller
     public function newAction(Request $request)
     {
         $formData = array();
-        $form = $this->createForm(new AppType(), $formData);
+        $form = $this->createForm(AppType::class, $formData);
 
         $form->handleRequest($request);
 
@@ -90,7 +90,7 @@ class AppController extends Controller
         }
 
         $formData = array();
-        $form = $this->createForm(new AppType(), $app);
+        $form = $this->createForm(AppType::class, $app);
 
         $form->handleRequest($request);
 
