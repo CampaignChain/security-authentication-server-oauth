@@ -63,7 +63,7 @@ class AppType extends AbstractType
         $resolver->setDefaults(array());
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'campaignchain_security_authentication_server_oauth_apps';
     }
